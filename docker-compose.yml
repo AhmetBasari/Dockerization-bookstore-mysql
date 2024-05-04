@@ -1,0 +1,27 @@
+services:
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "ahmet0303"
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: "bookstore_db"
+    networks:
+      - books-net
+    volumes:
+      - mysql-volume:/var/lib/mysql
+  bookstore:
+    image: "bookstoreapi:latest"
+    networks:
+      - books-net
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - "80:80"
+
+networks:
+  books-net:
+
+volumes:
+  mysql-volume:
