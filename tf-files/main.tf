@@ -52,7 +52,7 @@ resource "github_repository_file" "app-files" {
   commit_message      = "Managed by Terraform"
   commit_author       = "ahmet"
   commit_email        = "ahmetbasari@gmail.com"
-  overwrite_on_create = true #true yapmazsak degisiklik yaptigimizda dosyalar var olusturmaz hatasi aliriz
+  overwrite_on_create = true #If we do not set it to "true", we will get the error that the files do not exist when we make changes.
 }
 
 resource "aws_security_group" "tf-docker-sec-gr" {
